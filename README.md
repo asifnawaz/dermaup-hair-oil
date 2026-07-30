@@ -26,6 +26,7 @@ relationships needed for evidence-backed reverse engineering.
 | Editable reconstruction | 219/219 indexed paths represented; 256 reconstructed files in total |
 | Deployment drift restored | 3 deployed-only media API routes |
 | Build result | TypeScript, 55-route Next.js build, OpenNext build, and Wrangler dry-run pass |
+| Hosted comparison | Public recovered snapshot deployed at [upderma-recovery-preview.iamasifnawaz.chatgpt.site](https://upderma-recovery-preview.iamasifnawaz.chatgpt.site) |
 
 The editable application is under
 [`reconstructed-source`](reconstructed-source). Complete original source bodies
@@ -97,8 +98,13 @@ application:
 
 The preview D1 schema and public-only seed data were applied. The Cloudflare
 connector authorized creation and database seeding but did not authorize the
-final Worker upload, so there is no deployed preview URL from this recovery
-session. Production resources and `upderma.com` were not modified.
+final Worker upload. As a public visual-comparison fallback, the reconstructed
+site was deployed separately at
+[upderma-recovery-preview.iamasifnawaz.chatgpt.site](https://upderma-recovery-preview.iamasifnawaz.chatgpt.site).
+That fallback serves the recovered public snapshot and is not connected to the
+preview D1 or production data. Authenticated backoffice behaviour was therefore
+validated only by the guarded local smoke suite. Production resources and
+`upderma.com` were not modified.
 
 All runnable scripts in `reconstructed-source/package.json` explicitly use
 `wrangler.preview.jsonc`. The recovered production configurations are stored

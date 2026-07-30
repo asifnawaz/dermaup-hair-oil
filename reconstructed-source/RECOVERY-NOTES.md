@@ -185,7 +185,11 @@ preview-only data. Outbound email was disabled.
 
 The preview-only D1 schema and public seed were successfully applied to the
 isolated Cloudflare preview database. Preview Worker upload was then blocked by
-Cloudflare connector authorization, so remote browser comparison was not
-performed. No production Worker, database, bucket, route, domain, secret, or
-record was changed. See `../recovery/VALIDATION.md` for the test matrix and
-remaining deployment step.
+Cloudflare connector authorization. A separate public-snapshot comparison build
+was deployed at
+`https://upderma-recovery-preview.iamasifnawaz.chatgpt.site`; it has no
+connection to the preview D1, R2, or production data. Authenticated backoffice
+behaviour remains validated by the guarded local smoke suite rather than that
+fallback deployment. No production Worker, database, bucket, route, domain,
+secret, or record was changed. See `../recovery/VALIDATION.md` for the test
+matrix and remaining Cloudflare-native deployment step.
