@@ -1,0 +1,20 @@
+{
+  "project": {
+    "name": "dermaup-hair-oil",
+    "indexed_at": "2026-07-22T01:28:00Z",
+    "root_path": "/home/asifnawaz/git/dermaup-hair-oil"
+  },
+  "branch_evidence": {
+    "is_git": true,
+    "is_worktree": false,
+    "is_detached": false,
+    "root_exists": true,
+    "canonical_root": "/home/asifnawaz/git/dermaup-hair-oil",
+    "worktree_root": "/home/asifnawaz/git/dermaup-hair-oil",
+    "git_common_dir": ".git",
+    "branch": "main",
+    "head_sha": "0eed85e378fd65c75eaf90b9588a85d11de9f523",
+    "base_sha": ""
+  },
+  "database_integrity": "ok"
+}

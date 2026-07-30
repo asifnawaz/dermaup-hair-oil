@@ -1,10 +1,16 @@
 node_modules/
 .wrangler/
+.next/
+.open-next/
+*.tsbuildinfo
+reconstructed-source/public
 .dev.vars
 .dev.vars.*
 .env
 .env.*
 !.dev.vars.example
+!.env.example
+!reconstructed-source/.env.example
 raw/
 dist/worker.js
 public/cdn-cgi/

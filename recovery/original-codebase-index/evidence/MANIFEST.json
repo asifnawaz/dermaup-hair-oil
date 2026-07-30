@@ -1,0 +1,19 @@
+{
+  "created_utc": "2026-07-30T19:06:10.194173+00:00",
+  "source_database": "R:\\WSL-Recovery\\offline-analysis\\git-carve\\dermaup-codebase-memory-20260730-195110\\dermaup-hair-oil.db",
+  "source_database_sha256": "a369587c6b940f156ad1b7f2f66c00fac6153da33dde04ad030a4479709d43cc",
+  "records": 2369,
+  "files_with_evidence": 202,
+  "counts": {
+    "parser-derived-signature": 804,
+    "parser-extracted-call-argument-prefix": 1519,
+    "parser-extracted-leading-comment": 46
+  },
+  "quarantined_sensitive_records": 0,
+  "limitations": [
+    "No complete source bodies",
+    "Signatures are parser-derived and may normalize formatting",
+    "Call arguments are bounded parser-extracted prefixes and may be truncated at 120 characters",
+    "No record may be represented as an original complete .ts/.tsx file"
+  ]
+}

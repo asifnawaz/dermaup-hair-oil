@@ -1,0 +1,86 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+@font-face {
+  font-family: "bodyFont";
+  src: url("/fonts/body.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+@font-face {
+  font-family: "displayFont";
+  src: url("/fonts/display.woff2") format("woff2");
+  font-display: swap;
+  font-weight: 100 900;
+}
+
+.font-body-recovered {
+  --font-body: "bodyFont", var(--font-latin-fallback);
+}
+
+.font-display-recovered {
+  --font-display: "displayFont", var(--font-display-fallback);
+}
+
+.font-urdu-body-recovered {
+  --font-urdu-body: var(--font-urdu-body-fallback);
+}
+
+.font-urdu-display-recovered {
+  --font-urdu-display: var(--font-urdu-display-fallback);
+}
+
+:root {
+  --font-latin-fallback:
+    "SF Pro Text", "SF Pro Display", Inter, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-display-fallback:
+    "SF Pro Display", "SF Pro Text", Inter, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", sans-serif;
+  --font-urdu-body-fallback:
+    "Noto Naskh Arabic", "Noto Sans Arabic", system-ui, sans-serif;
+  --font-urdu-display-fallback:
+    "Noto Nastaliq Urdu", "Jameel Noori Nastaleeq", "Noto Naskh Arabic",
+    serif;
+  color: #1f2937;
+  background: #fafafa;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100%;
+  margin: 0;
+  font-family: var(--font-body, var(--font-latin-fallback));
+  background: #fafafa;
+  color: #1f2937;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+
+[dir="rtl"] body {
+  font-family: var(--font-urdu-body, var(--font-urdu-body-fallback));
+}

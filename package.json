@@ -6,11 +6,18 @@
   "scripts": {
     "recover:worker": "node scripts/restore-worker.mjs",
     "verify:recovery": "node scripts/verify-recovery.mjs",
+    "verify:index": "node scripts/verify-source-index.mjs",
+    "analyze:source-drift": "node scripts/analyze-source-drift.mjs",
+    "map:server-modules": "node scripts/map-server-modules.mjs",
+    "extract:live-modules": "node scripts/extract-live-modules.mjs",
+    "extract:public-data": "node scripts/extract-public-snapshot-data.mjs",
+    "generate:preview-seed": "node scripts/generate-preview-seed.mjs",
+    "verify:live-modules": "node scripts/verify-live-modules.mjs",
+    "report:source-coverage": "node scripts/report-source-coverage.mjs",
     "recover:assets": "node scripts/recover-public-assets.mjs",
-    "deploy:recovered": "npm run verify:recovery && npm run recover:worker && npx wrangler@4 deploy"
+    "list:publication": "node scripts/list-publication-files.mjs"
   },
   "engines": {
     "node": ">=20"
   }
 }
-

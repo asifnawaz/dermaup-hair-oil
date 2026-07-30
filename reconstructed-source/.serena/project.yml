@@ -1,0 +1,19 @@
+# RECONSTRUCTED SOURCE
+#
+# The original path is proven by the recovered file inventory, but its body did
+# not survive. This minimal configuration records the indexed TypeScript
+# project without claiming byte-for-byte recovery.
+
+languages:
+  - typescript
+encoding: utf-8
+ignore_all_files_in_gitignore: true
+ignored_paths:
+  - node_modules
+  - .next
+  - .open-next
+  - .wrangler
+read_only: false
+excluded_tools: []
+initial_prompt: ""
+project_name: dermaup-hair-oil

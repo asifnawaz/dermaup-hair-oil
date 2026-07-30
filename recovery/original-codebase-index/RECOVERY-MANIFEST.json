@@ -1,0 +1,48 @@
+{
+  "created_utc": "2026-07-30T18:56:22.291553+00:00",
+  "source_database": "R:\\WSL-Recovery\\offline-analysis\\git-carve\\dermaup-codebase-memory-20260730-195110\\dermaup-hair-oil.db",
+  "source_database_sha256": "a369587c6b940f156ad1b7f2f66c00fac6153da33dde04ad030a4479709d43cc",
+  "database_integrity": "ok",
+  "counts": {
+    "files": 219,
+    "nodes": 2024,
+    "edges": 5830,
+    "routes": 28
+  },
+  "label_counts": {
+    "Branch": 1,
+    "Class": 7,
+    "File": 219,
+    "Folder": 95,
+    "Function": 803,
+    "Interface": 138,
+    "Method": 1,
+    "Module": 218,
+    "Project": 1,
+    "Route": 28,
+    "Section": 24,
+    "Type": 148,
+    "Variable": 341
+  },
+  "edge_counts": {
+    "CALLS": 1323,
+    "CONTAINS_FILE": 219,
+    "CONTAINS_FOLDER": 86,
+    "DEFINES": 1681,
+    "DEFINES_METHOD": 1,
+    "HAS_BRANCH": 1,
+    "HTTP_CALLS": 57,
+    "IMPORTS": 1175,
+    "INHERITS": 13,
+    "RAISES": 1,
+    "SEMANTICALLY_RELATED": 341,
+    "SIMILAR_TO": 142,
+    "USAGE": 778,
+    "WRITES": 12
+  },
+  "limitations": [
+    "No complete source bodies in schema",
+    "Empty file_hashes.sha256 values",
+    "Exports are metadata evidence, not original source"
+  ]
+}

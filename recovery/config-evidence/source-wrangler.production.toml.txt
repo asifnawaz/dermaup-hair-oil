@@ -1,0 +1,37 @@
+"$schema" = "./node_modules/wrangler/config-schema.json"
+name = "upderma-hair-oil"
+main = ".open-next/worker.js"
+compatibility_date = "2026-04-20"
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
+workers_dev = false
+routes = [{ pattern = "upderma.com", custom_domain = true }]
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+[[services]]
+binding = "WORKER_SELF_REFERENCE"
+service = "upderma-hair-oil"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "upderma-db"
+database_id = "1007d649-e862-4560-805a-11d00d3346f5"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "NEXT_INC_CACHE_R2_BUCKET"
+bucket_name = "upderma-cache"
+
+[[r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "upderma-cache"
+
+[dev]
+port = 3000
+local_protocol = "http"

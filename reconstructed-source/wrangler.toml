@@ -1,0 +1,41 @@
+# Safe default configuration for the isolated reconstruction preview.
+# The recovered production configuration is archived as inert text under
+# ../recovery/config-evidence/ and must not be used for deployment.
+"$schema" = "./node_modules/wrangler/config-schema.json"
+name = "upderma-reconstruction-preview"
+main = ".open-next/worker.js"
+compatibility_date = "2026-07-30"
+compatibility_flags = ["nodejs_compat", "global_fetch_strictly_public"]
+workers_dev = true
+preview_urls = true
+
+[observability]
+enabled = true
+head_sampling_rate = 1
+
+[assets]
+directory = ".open-next/assets"
+binding = "ASSETS"
+
+[[services]]
+binding = "WORKER_SELF_REFERENCE"
+service = "upderma-reconstruction-preview"
+
+[[d1_databases]]
+binding = "DB"
+database_name = "upderma-reconstruction-preview"
+database_id = "4e019080-4d99-4830-b17a-386a6ce4f628"
+preview_database_id = "4e019080-4d99-4830-b17a-386a6ce4f628"
+migrations_dir = "migrations"
+
+[[r2_buckets]]
+binding = "NEXT_INC_CACHE_R2_BUCKET"
+bucket_name = "upderma-reconstruction-preview-cache"
+
+[[r2_buckets]]
+binding = "MEDIA_BUCKET"
+bucket_name = "upderma-reconstruction-preview-media"
+
+[dev]
+port = 3000
+local_protocol = "http"
