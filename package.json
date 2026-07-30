@@ -1,0 +1,16 @@
+{
+  "name": "dermaup-hair-oil-recovery",
+  "version": "0.0.0-recovered",
+  "private": true,
+  "description": "Recovered production artifacts for upderma.com",
+  "scripts": {
+    "recover:worker": "node scripts/restore-worker.mjs",
+    "verify:recovery": "node scripts/verify-recovery.mjs",
+    "recover:assets": "node scripts/recover-public-assets.mjs",
+    "deploy:recovered": "npm run verify:recovery && npm run recover:worker && npx wrangler@4 deploy"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
+

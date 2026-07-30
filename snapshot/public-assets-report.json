@@ -1,0 +1,59 @@
+{
+  "recoveredAt": "2026-07-30T15:07:34.259Z",
+  "source": "https://upderma.com",
+  "frozenWorkerVersion": "07fa0712-d8ac-48b7-bc06-7be615555184",
+  "pages": [
+    {
+      "route": "/",
+      "bytes": 93049
+    },
+    {
+      "route": "/products",
+      "bytes": 84362
+    },
+    {
+      "route": "/products/hair-growth-oil",
+      "bytes": 385621
+    },
+    {
+      "route": "/products/glass-glow-serum",
+      "bytes": 314204
+    },
+    {
+      "route": "/products/rice-glow-cream",
+      "bytes": 315911
+    },
+    {
+      "route": "/products/rice-renew-cream",
+      "bytes": 344169
+    },
+    {
+      "route": "/delivery-returns",
+      "bytes": 41431
+    },
+    {
+      "route": "/refund",
+      "bytes": 42499
+    },
+    {
+      "route": "/privacy",
+      "bytes": 40999
+    },
+    {
+      "route": "/terms",
+      "bytes": 40780
+    },
+    {
+      "route": "/checkout",
+      "bytes": 15388
+    },
+    {
+      "route": "/backoffice/login",
+      "bytes": 10804
+    }
+  ],
+  "requestedAssets": 271,
+  "recoveredFiles": 271,
+  "recoveredBytes": 12572579,
+  "failures": []
+}

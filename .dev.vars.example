@@ -1,0 +1,16 @@
+# Generate a long random value before local or production use.
+JWT_SECRET=
+ADMIN_SETUP_KEY=
+
+# Transactional email
+RESEND_API_KEY=
+FROM_EMAIL=UpDerma <orders@upderma.com>
+REPLY_TO_EMAIL=support@upderma.com
+
+# Optional WhatsApp integration
+WHATSAPP_API_TOKEN=
+
+# Optional OpenNext cache purge support
+CACHE_PURGE_ZONE_ID=
+CACHE_PURGE_API_TOKEN=
+

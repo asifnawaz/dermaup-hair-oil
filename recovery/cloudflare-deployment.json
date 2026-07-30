@@ -1,0 +1,48 @@
+{
+  "recoveredAt": "2026-07-30",
+  "accountId": "2e78bd0a1446b7a0563bfef1ddde87a5",
+  "zone": {
+    "id": "7ed4a92124f2dcec74d64184b0f5fab9",
+    "name": "upderma.com",
+    "status": "active"
+  },
+  "worker": {
+    "name": "upderma-hair-oil",
+    "version": 8,
+    "versionId": "07fa0712-d8ac-48b7-bc06-7be615555184",
+    "createdOn": "2026-07-22T12:17:52.31803Z",
+    "compatibilityDate": "2026-04-20",
+    "compatibilityFlags": [
+      "nodejs_compat",
+      "global_fetch_strictly_public"
+    ],
+    "mainModule": "worker.js",
+    "buildId": "XpuGOxTMXraAKxrygeae6",
+    "workersDev": false
+  },
+  "bindings": {
+    "d1": {
+      "binding": "DB",
+      "name": "upderma-db",
+      "id": "1007d649-e862-4560-805a-11d00d3346f5"
+    },
+    "r2": [
+      {
+        "binding": "MEDIA_BUCKET",
+        "bucket": "upderma-cache"
+      },
+      {
+        "binding": "NEXT_INC_CACHE_R2_BUCKET",
+        "bucket": "upderma-cache"
+      }
+    ],
+    "service": {
+      "binding": "WORKER_SELF_REFERENCE",
+      "service": "upderma-hair-oil",
+      "environment": "production"
+    }
+  },
+  "publishedSecretValues": false,
+  "productionDatabaseRowsPublished": false
+}
+

@@ -1,0 +1,30 @@
+{
+  "auditedAt": "2026-07-30T15:07:44.398Z",
+  "sourceWorker": {
+    "cloudflareVersion": "07fa0712-d8ac-48b7-bc06-7be615555184",
+    "bytes": 12380355,
+    "sha256": "36e3f9d05d84514682c52673b82dec114b8351e8585ee90e25ef99e34e072931",
+    "published": false
+  },
+  "sanitizedWorker": {
+    "bytes": 12380295,
+    "sha256": "6ba7e07d844a6f5d5900c79c8ca7712cc81c1344d13a793dc2f305b03735cfc4",
+    "gzipBytes": 2404093,
+    "gzipSha256": "15a15f65f903e220f9aa88c723a10aa02a91b27872cc97daa5330c82645270c1"
+  },
+  "replacements": [
+    {
+      "pattern": "cloudflare_api_token",
+      "count": 3
+    }
+  ],
+  "remainingSecretFindings": [],
+  "excludedDataClasses": [
+    "admin credentials and password hashes",
+    "analytics events",
+    "customer names, email addresses, phone numbers, and addresses",
+    "email logs",
+    "orders and order activity",
+    "subscribers"
+  ]
+}
