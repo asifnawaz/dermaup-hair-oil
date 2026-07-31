@@ -1,11 +1,15 @@
+/*
+ * Exact-recovery preview wrapper.
+ *
+ * `app.js` is the sanitized recovered Worker module supplied during the
+ * controlled Cloudflare restore. Static assets are served from an isolated R2
+ * bucket so the recovered Next.js route filenames remain unchanged.
+ */
 import recoveredApp from "./app.js";
-
-const GENERATED_STYLESHEET = "/_next/static/css/05fce39a406715ff.css";
-const ARCHIVED_LIVE_STYLESHEET =
-  "/_next/static/css/recovery-fa88a64dc1919ad8-6ebf69a93c833e24.css?v=2";
 
 function assetKey(request) {
   const url = new URL(request.url);
+
   try {
     return decodeURIComponent(url.pathname.replace(/^\/+/, ""));
   } catch {
@@ -38,24 +42,6 @@ async function serveStaticAsset(request, env) {
   });
 }
 
-async function useArchivedLiveStyles(response) {
-  const contentType = response.headers.get("content-type") || "";
-  if (!contentType.includes("text/html")) return response;
-
-  const html = await response.text();
-  const headers = new Headers(response.headers);
-  headers.delete("content-length");
-
-  return new Response(
-    html.replaceAll(GENERATED_STYLESHEET, ARCHIVED_LIVE_STYLESHEET),
-    {
-      status: response.status,
-      statusText: response.statusText,
-      headers,
-    }
-  );
-}
-
 export default {
   async fetch(request, env, ctx) {
     const staticResponse = await serveStaticAsset(request, env);
@@ -63,7 +49,9 @@ export default {
 
     const assetsBinding = {
       async fetch(input, init) {
-        const assetRequest = input instanceof Request ? input : new Request(input, init);
+        const assetRequest =
+          input instanceof Request ? input : new Request(input, init);
+
         return (
           (await serveStaticAsset(assetRequest, env)) ||
           new Response("Not Found", { status: 404 })
@@ -71,11 +59,10 @@ export default {
       },
     };
 
-    const response = await recoveredApp.fetch(
+    return recoveredApp.fetch(
       request,
       { ...env, ASSETS: assetsBinding },
       ctx
     );
-    return useArchivedLiveStyles(response);
   },
 };

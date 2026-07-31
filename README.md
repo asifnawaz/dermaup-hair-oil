@@ -17,7 +17,7 @@ relationships needed for evidence-backed reverse engineering.
 | --- | --- |
 | Cloudflare Worker | Frozen version 8 recovered |
 | Server artifact | Sanitized deployable Worker included as `dist/worker.js.gz` |
-| Static assets | 272 unique deployable files with no failed downloads |
+| Static assets | 274 unique deployable files with no failed downloads |
 | Public HTML evidence | 12 route snapshots |
 | D1 schema | 57 table and index objects, schema only |
 | Route inventory | 79 deployed pathnames and 40 original API source paths |
@@ -26,9 +26,9 @@ relationships needed for evidence-backed reverse engineering.
 | Editable reconstruction | 219/219 indexed paths represented; 256 reconstructed files in total |
 | Deployment drift restored | 3 deployed-only media API routes |
 | Build result | TypeScript, 55-route Next.js build, OpenNext build, and Wrangler dry-run pass |
-| Full-stack Cloudflare preview | [upderma-reconstruction-preview.thedotcom.workers.dev](https://upderma-reconstruction-preview.thedotcom.workers.dev) |
+| Exact Cloudflare parity preview | [upderma-reconstruction-preview.thedotcom.workers.dev](https://upderma-reconstruction-preview.thedotcom.workers.dev) |
 | Static snapshot fallback | [upderma-recovery-preview.iamasifnawaz.chatgpt.site](https://upderma-recovery-preview.iamasifnawaz.chatgpt.site) |
-| Hosted smoke result | 12 authenticated APIs, 15 backoffice pages, coupon, order, payment, and shipment pass |
+| Hosted smoke result | All 15 public pages, all 4 product pages, cart flow, 13 core backoffice routes, and logout pass |
 
 The editable application is under
 [`reconstructed-source`](reconstructed-source). Complete original source bodies
@@ -90,33 +90,41 @@ in this public repository.
 
 ## Isolated preview status
 
-The reconstructed application is deployed only to isolated preview resources:
+The sanitized recovered Worker is deployed only to isolated preview resources:
 
 - Worker: `upderma-reconstruction-preview`
 - URL: [upderma-reconstruction-preview.thedotcom.workers.dev](https://upderma-reconstruction-preview.thedotcom.workers.dev)
+- Audited immutable version: [86e7e433-upderma-reconstruction-preview.thedotcom.workers.dev](https://86e7e433-upderma-reconstruction-preview.thedotcom.workers.dev)
 - D1: `upderma-reconstruction-preview`
-- R2 cache: `upderma-reconstruction-preview-cache`
+- R2 cache: `upderma-reconstruction-preview-exact-cache`
 - R2 media: `upderma-reconstruction-preview-media`
 - R2 static assets: `upderma-reconstruction-preview-assets`
 
-The preview D1 contains only schema, public seed data, and synthetic smoke-test
-records. A synthetic preview administrator is configured through private
-preview bindings; its credentials are not committed. Transactional email is
-not configured, so hosted smoke tests cannot send outbound mail.
+The public catalog/content tables were copied into the isolated D1 with
+read-only production queries. Private production orders, customers,
+subscribers, analytics, email logs, admin users, and password hashes were not
+copied. All 274 recovered public files match their isolated R2 object ETags.
 
-The final hosted smoke suite passed 12 authenticated admin APIs, 15 backoffice
-pages, coupon validation, synthetic order creation, payment verification, and
-shipment. A browser comparison confirmed the recovered homepage structure,
-archived styles, fonts, imagery, typography, and primary controls match the live
-homepage. The preview wrapper and its archived-stylesheet routing are preserved
-in `reconstructed-source/cloudflare-preview-wrapper.js`.
+The final browser audit compared all 15 active public pages and all four
+product pages against the live site. Titles and rendered accessibility DOM
+matched exactly, and image paths and natural dimensions matched after lazy
+loading. Full-page pixel comparisons were exact for the homepage, catalog,
+delivery, refund, privacy, and terms pages. The two missing dermatologist
+portraits were recovered byte-for-byte from their public production URLs and
+are now stored in both isolated R2 and this repository.
+
+Add-to-cart and authenticated preview backoffice checks passed. The backoffice
+login screenshots were byte-identical. The temporary preview-only
+administrator used for that test was deleted afterward.
 
 Production Worker, D1, R2, routes, DNS, secrets, and `upderma.com` were not
-modified. The live homepage was accessed read-only for comparison only.
+modified. Production was accessed only with GET/SELECT operations for recovery
+and comparison. See [recovery/PARITY-REPORT.md](recovery/PARITY-REPORT.md).
 
-All runnable scripts in `reconstructed-source/package.json` explicitly use
-`wrangler.preview.jsonc`. The recovered production configurations are stored
-only as text evidence under `recovery/config-evidence/`. Do not point the
-preview configuration or scripts at production bindings.
+The editable reconstruction remains under `reconstructed-source`. Its runnable
+Wrangler target is deliberately named `upderma-reconstruction-editable-preview`
+so it cannot overwrite the exact parity preview accidentally. Recovered
+production configurations are stored only as inert text evidence under
+`recovery/config-evidence/`.
 
 Read [recovery/DEPLOYMENT.md](recovery/DEPLOYMENT.md) before deploying.

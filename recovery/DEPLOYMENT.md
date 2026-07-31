@@ -14,8 +14,45 @@ npm run build:cloudflare
 npm run deploy:preview
 ```
 
-Those commands select `wrangler.preview.jsonc` and the isolated
-`upderma-reconstruction-preview` resources.
+Those commands select `wrangler.preview.jsonc` and the isolated editable-source
+target `upderma-reconstruction-editable-preview`. That separate name prevents a
+routine source deployment from replacing the exact recovered parity Worker.
+
+## Exact parity preview
+
+The sanitized recovered runtime is currently hosted at:
+
+- Worker: `upderma-reconstruction-preview`
+- URL: `https://upderma-reconstruction-preview.thedotcom.workers.dev`
+- Audited immutable Worker version:
+  `86e7e433-70b9-49dd-a6c6-2ed68bcd1493`
+- Audited immutable URL:
+  `https://86e7e433-upderma-reconstruction-preview.thedotcom.workers.dev`
+- D1: `upderma-reconstruction-preview`
+- R2 cache: `upderma-reconstruction-preview-exact-cache`
+- R2 media: `upderma-reconstruction-preview-media`
+- R2 static assets: `upderma-reconstruction-preview-assets`
+
+`../reconstructed-source/cloudflare-preview-wrapper.js` records the deployed
+R2 asset-routing wrapper. Its imported `app.js` module is supplied from the
+sanitized recovered Worker during the controlled restore and is not committed
+as a second uncompressed artifact.
+
+The final preview uses the `utf8-v2` incremental-cache prefix. This separates
+the corrected UTF-8 render cache from earlier recovery iterations without
+deleting historical isolated cache objects.
+
+Two public assets absent from the original recovered tree were restored
+byte-for-byte from their live public URLs and committed under
+`public/dermatologists/`:
+
+- `dr-faraz-ali.png` — 2,104,250 bytes, MD5
+  `5213e4962f58634477f17b996d034248`
+- `dr-muneeb-shah.jpeg` — 64,735 bytes, MD5
+  `1e3b8be820de92dacbebf45676c19f9a`
+
+Do not attach this preview Worker to `upderma.com`, copy production secrets into
+it, or change its bindings to production D1/R2 resources.
 
 ## What can be redeployed
 

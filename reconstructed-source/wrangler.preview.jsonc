@@ -1,6 +1,6 @@
 {
   "$schema": "./node_modules/wrangler/config-schema.json",
-  "name": "upderma-reconstruction-preview",
+  "name": "upderma-reconstruction-editable-preview",
   "main": ".open-next/worker.js",
   "compatibility_date": "2026-07-30",
   "compatibility_flags": [
@@ -20,7 +20,7 @@
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
-      "service": "upderma-reconstruction-preview"
+      "service": "upderma-reconstruction-editable-preview"
     }
   ],
   "d1_databases": [
