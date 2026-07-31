@@ -1,5 +1,9 @@
 import recoveredApp from "./app.js";
 
+const GENERATED_STYLESHEET = "/_next/static/css/05fce39a406715ff.css";
+const ARCHIVED_LIVE_STYLESHEET =
+  "/_next/static/css/recovery-fa88a64dc1919ad8-6ebf69a93c833e24.css";
+
 function assetKey(request) {
   const url = new URL(request.url);
   try {
@@ -34,6 +38,24 @@ async function serveStaticAsset(request, env) {
   });
 }
 
+async function useArchivedLiveStyles(response) {
+  const contentType = response.headers.get("content-type") || "";
+  if (!contentType.includes("text/html")) return response;
+
+  const html = await response.text();
+  const headers = new Headers(response.headers);
+  headers.delete("content-length");
+
+  return new Response(
+    html.replaceAll(GENERATED_STYLESHEET, ARCHIVED_LIVE_STYLESHEET),
+    {
+      status: response.status,
+      statusText: response.statusText,
+      headers,
+    }
+  );
+}
+
 export default {
   async fetch(request, env, ctx) {
     const staticResponse = await serveStaticAsset(request, env);
@@ -49,6 +71,11 @@ export default {
       },
     };
 
-    return recoveredApp.fetch(request, { ...env, ASSETS: assetsBinding }, ctx);
+    const response = await recoveredApp.fetch(
+      request,
+      { ...env, ASSETS: assetsBinding },
+      ctx
+    );
+    return useArchivedLiveStyles(response);
   },
 };
