@@ -26,7 +26,9 @@ relationships needed for evidence-backed reverse engineering.
 | Editable reconstruction | 219/219 indexed paths represented; 256 reconstructed files in total |
 | Deployment drift restored | 3 deployed-only media API routes |
 | Build result | TypeScript, 55-route Next.js build, OpenNext build, and Wrangler dry-run pass |
-| Hosted comparison | Public recovered snapshot deployed at [upderma-recovery-preview.iamasifnawaz.chatgpt.site](https://upderma-recovery-preview.iamasifnawaz.chatgpt.site) |
+| Full-stack Cloudflare preview | [upderma-reconstruction-preview.thedotcom.workers.dev](https://upderma-reconstruction-preview.thedotcom.workers.dev) |
+| Static snapshot fallback | [upderma-recovery-preview.iamasifnawaz.chatgpt.site](https://upderma-recovery-preview.iamasifnawaz.chatgpt.site) |
+| Hosted smoke result | 12 authenticated APIs, 15 backoffice pages, coupon, order, payment, and shipment pass |
 
 The editable application is under
 [`reconstructed-source`](reconstructed-source). Complete original source bodies
@@ -88,23 +90,29 @@ in this public repository.
 
 ## Isolated preview status
 
-Preview-only Cloudflare resources were created for the reconstructed
-application:
+The reconstructed application is deployed only to isolated preview resources:
 
-- Worker target: `upderma-reconstruction-preview`
+- Worker: `upderma-reconstruction-preview`
+- URL: [upderma-reconstruction-preview.thedotcom.workers.dev](https://upderma-reconstruction-preview.thedotcom.workers.dev)
 - D1: `upderma-reconstruction-preview`
 - R2 cache: `upderma-reconstruction-preview-cache`
 - R2 media: `upderma-reconstruction-preview-media`
+- R2 static assets: `upderma-reconstruction-preview-assets`
 
-The preview D1 schema and public-only seed data were applied. The Cloudflare
-connector authorized creation and database seeding but did not authorize the
-final Worker upload. As a public visual-comparison fallback, the reconstructed
-site was deployed separately at
-[upderma-recovery-preview.iamasifnawaz.chatgpt.site](https://upderma-recovery-preview.iamasifnawaz.chatgpt.site).
-That fallback serves the recovered public snapshot and is not connected to the
-preview D1 or production data. Authenticated backoffice behaviour was therefore
-validated only by the guarded local smoke suite. Production resources and
-`upderma.com` were not modified.
+The preview D1 contains only schema, public seed data, and synthetic smoke-test
+records. A synthetic preview administrator is configured through private
+preview bindings; its credentials are not committed. Transactional email is
+not configured, so hosted smoke tests cannot send outbound mail.
+
+The final hosted smoke suite passed 12 authenticated admin APIs, 15 backoffice
+pages, coupon validation, synthetic order creation, payment verification, and
+shipment. A browser comparison confirmed the recovered homepage structure,
+archived styles, fonts, imagery, typography, and primary controls match the live
+homepage. The preview wrapper and its archived-stylesheet routing are preserved
+in `reconstructed-source/cloudflare-preview-wrapper.js`.
+
+Production Worker, D1, R2, routes, DNS, secrets, and `upderma.com` were not
+modified. The live homepage was accessed read-only for comparison only.
 
 All runnable scripts in `reconstructed-source/package.json` explicitly use
 `wrangler.preview.jsonc`. The recovered production configurations are stored
