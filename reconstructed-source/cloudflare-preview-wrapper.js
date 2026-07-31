@@ -2,7 +2,7 @@ import recoveredApp from "./app.js";
 
 const GENERATED_STYLESHEET = "/_next/static/css/05fce39a406715ff.css";
 const ARCHIVED_LIVE_STYLESHEET =
-  "/_next/static/css/recovery-fa88a64dc1919ad8-6ebf69a93c833e24.css";
+  "/_next/static/css/recovery-fa88a64dc1919ad8-6ebf69a93c833e24.css?v=2";
 
 function assetKey(request) {
   const url = new URL(request.url);
